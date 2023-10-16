@@ -24,9 +24,9 @@ const PopularProduct = ({ coffee, handleDelete }) => {
                     <Link to={`/viewDetails/${_id}`}><div className='bg-[#D2B48C] p-1 text-white rounded-sm '>
                         <AiOutlineEye></AiOutlineEye>
                     </div></Link>
-                    <div className='bg-[#3C393B] p-1 text-white rounded-sm my-2'>
+                    <Link to={`/updateCoffee/${_id}`}><div className='bg-[#3C393B] p-1 text-white rounded-sm my-2'>
                         <CiEdit></CiEdit>
-                    </div>
+                    </div></Link>
                     <div onClick={() => handleDelete(_id)} className='bg-[#EA4744] p-1 text-white rounded-sm'>
                         <AiOutlineDelete></AiOutlineDelete>
                     </div>

@@ -10,6 +10,7 @@ import {
 import Home from './Components/Home/Home.jsx';
 import AddCoffee from './Components/AddCoffee/AddCoffee.jsx';
 import ViewDetails from './Components/ViewDetails/ViewDetails.jsx';
+import UpdateCoffee from './Components/UpdateCoffee/UpdateCoffee.jsx';
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
     path: '/viewDetails/:id',
     loader: ({params})=> fetch(`http://localhost:8001/coffee/${params.id}`),
     element: <ViewDetails></ViewDetails>
+  },
+  {
+    path: '/updateCoffee/:id',
+    loader: ({params})=> fetch(`http://localhost:8001/coffee/${params.id}`),
+    element: <UpdateCoffee></UpdateCoffee>
   }
   
 ]);
