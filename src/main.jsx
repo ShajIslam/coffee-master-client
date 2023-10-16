@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import Home from './Components/Home/Home.jsx';
 import AddCoffee from './Components/AddCoffee/AddCoffee.jsx';
+import ViewDetails from './Components/ViewDetails/ViewDetails.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -18,7 +20,13 @@ const router = createBrowserRouter([
   {
     path: '/addCoffee',
     element: <AddCoffee></AddCoffee>
+  },
+  {
+    path: '/viewDetails/:id',
+    loader: ({params})=> fetch(`http://localhost:8001/coffee/${params.id}`),
+    element: <ViewDetails></ViewDetails>
   }
+  
 ]);
 
 

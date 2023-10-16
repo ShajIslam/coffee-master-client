@@ -1,52 +1,64 @@
-import { AiOutlineEye, AiOutlineDelete } from 'react-icons/ai';
-import { CiEdit } from 'react-icons/ci';
-import coffee from '/14 1.png'
-import './style.css'
+import { useEffect, useState } from "react";
+import PopularProduct from "./PopularProduct/PopularProduct";
+import Swal from "sweetalert2";
+
 const PopularProducts = () => {
+
+    const [coffees, setCoffees] = useState([]);
+  
+    useEffect(()=>{
+        fetch('http://localhost:8001/coffee')
+        .then(res=> res.json())
+        .then(data => setCoffees(data))
+    }, [])
+
+    const handleDelete = (_id) => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:8001/coffee/${_id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                              Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                              )
+                            const remainning = coffees.filter((singleCoffee)=> singleCoffee._id !== _id);
+                            setCoffees(remainning)
+                        }
+                    })
+            }
+        })
+    }
+
+
+
     return (
-        <div className='grid grid-cols-2 ml-7'>
-            <div className='flex items-center gap-10 bg-[#F5F4F1] w-[600px] p-5 rounded-sm'>
-            
-            <img className='w-52' src={coffee} alt="" />
-            <div>
-                <h3 ><span className='font-bold raleway'>Name: </span><span  className='raleway text-sm text-gray-400 font-thin'>Americano Coffee</span> </h3>
-                <h3><span  className='font-bold raleway'>Chef: </span><span  className='raleway text-sm text-gray-400 font-thin'>Mr. Matin Paul</span> </h3>
-                <h3><span  className='font-bold raleway'>Price: </span><span className='raleway text-sm text-gray-400 font-thin'>890 Taka</span> </h3>
-            
-            </div>
-            <div>
-                <div className='bg-[#D2B48C] p-1 text-white rounded-sm '>
-                    <AiOutlineEye></AiOutlineEye>
-                </div>
-                <div className='bg-[#3C393B] p-1 text-white rounded-sm my-2'>
-                    <CiEdit></CiEdit>
-                </div>
-                <div className='bg-[#EA4744] p-1 text-white rounded-sm'>
-                    <AiOutlineDelete></AiOutlineDelete>
-                </div>
-            </div>
-        </div>
-            <div className='flex items-center gap-10 bg-[#F5F4F1] w-[600px] p-5 rounded-sm'>
-            
-            <img className='w-52' src={coffee} alt="" />
-            <div>
-                <h3 ><span className='font-bold raleway'>Name: </span><span  className='raleway text-sm text-gray-400 font-thin'>Americano Coffee</span> </h3>
-                <h3><span  className='font-bold raleway'>Chef: </span><span  className='raleway text-sm text-gray-400 font-thin'>Mr. Matin Paul</span> </h3>
-                <h3><span  className='font-bold raleway'>Price: </span><span className='raleway text-sm text-gray-400 font-thin'>890 Taka</span> </h3>
-            
-            </div>
-            <div>
-                <div className='bg-[#D2B48C] p-1 text-white rounded-sm '>
-                    <AiOutlineEye></AiOutlineEye>
-                </div>
-                <div className='bg-[#3C393B] p-1 text-white rounded-sm my-2'>
-                    <CiEdit></CiEdit>
-                </div>
-                <div className='bg-[#EA4744] p-1 text-white rounded-sm'>
-                    <AiOutlineDelete></AiOutlineDelete>
-                </div>
-            </div>
-        </div>
+        <div className="grid grid-cols-2 gap-5 ml-5">
+            {
+                coffees.map((coffee)=> <PopularProduct
+                
+                key={coffee.key}
+                coffee={coffee}
+                handleDelete ={handleDelete}
+                
+                ></PopularProduct>)
+            }
+          
         </div>
     );
 };

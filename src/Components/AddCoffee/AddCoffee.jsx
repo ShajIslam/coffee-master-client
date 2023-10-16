@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 // https://ibb.co/prP903K
 
 const AddCoffee = () => {
+
+   
+    
     const handleAddCoffee=(event)=>{
         event.preventDefault();
         const form = event.target;
@@ -121,8 +124,9 @@ const AddCoffee = () => {
                 <input type="submit" value="Add Coffee" className="btn btn-block" />
 
             </form>
-            <Link to={'/home'}><button>Home</button></Link>
+            {/* <Link to={'/home'}><button>Home</button></Link> */}
         </div>
+        <Link to={'/home'}><button className='absolute top-3 left-[25%]'>Go Home</button></Link>
         </div>
     );
 };
