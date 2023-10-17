@@ -2,8 +2,7 @@ import { AiOutlineEye, AiOutlineDelete } from 'react-icons/ai';
 import { CiEdit } from 'react-icons/ci';
 import '../style.css'
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { useState } from 'react';
+
 
 const PopularProduct = ({ coffee, handleDelete }) => {
     const { name, chef, price, photo, _id } = coffee;
