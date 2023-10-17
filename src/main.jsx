@@ -15,7 +15,7 @@ import UpdateCoffee from './Components/UpdateCoffee/UpdateCoffee.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <Home></Home>,
   },
   {

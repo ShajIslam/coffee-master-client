@@ -24,7 +24,7 @@ const ViewDetails = () => {
             </div>
            
         </div>
-        <Link to={'/home'}><button className='absolute top-2 left-[22%]'>Go Home</button></Link>
+        <Link to={'/'}><button className='absolute top-2 left-[22%]'>Go Home</button></Link>
 
         </div>
     );

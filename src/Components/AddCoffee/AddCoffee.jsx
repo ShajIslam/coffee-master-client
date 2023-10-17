@@ -124,7 +124,7 @@ const AddCoffee = () => {
             </form>
             {/* <Link to={'/home'}><button>Home</button></Link> */}
         </div>
-        <Link to={'/home'}><button className='absolute top-3 left-[25%]'>Go Home</button></Link>
+        <Link to={'/'}><button className='absolute top-3 left-[25%]'>Go Home</button></Link>
         </div>
     );
 };
